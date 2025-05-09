@@ -1,0 +1,27 @@
+import axios from "axios";
+
+const sleep = (delay: number) => {
+    return new Promise(resolve => {
+        setTimeout(resolve,delay)
+    })
+}
+
+export const agent = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    timeout: 10000, //10 sec timeout in milliseconds
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+
+agent.interceptors.response.use(async response => {
+    try{
+        await sleep(1000)
+        return response;
+    } catch (error) {
+        console.log(error);
+        return Promise.reject(error);
+    }
+})
+
+export default agent;
