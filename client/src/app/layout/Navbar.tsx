@@ -38,6 +38,9 @@ export default function Navbar() {
                     <MenuItemLink to='/counter'>
                     Counter
                     </MenuItemLink>
+                    <MenuItemLink to='/errors'>
+                    Test Errors
+                    </MenuItemLink>
                 </Box>
                 <Button onClick={() => {}} size="large" variant="contained" color="warning">Create Activity</Button>
             </Toolbar>
