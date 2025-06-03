@@ -9,17 +9,24 @@ import Counter from "../../feature/counter/Counter";
 import TestErrors from "../../feature/errors/TestError";
 import NotFound from "../../feature/errors/NotFound";
 import ServerError from "../../feature/errors/ServerError";
+import LoginForm from "../../feature/account/LoginForm";
+import RequireAuth from "./RequireAuth";
+import RegisterForm from "../../feature/account/RegisterForm";
 
 export const router = createBrowserRouter([
     {
         path:'/',
         element: <App/>,
         children: [
+            {element: <RequireAuth/>, children: [
+                {path: 'activities', element: <ActivityDashboard /> },
+                {path: 'activities/:id', element: <ActivityDetailsPage/>},//(the :id is a placeholder for the url link to the specific id)
+                {path: 'createActivity', element: <ActivityForm key='create'/> },
+                {path: 'manage/:id', element:<ActivityForm/> },
+            ]},
             {path: '', element: <HomePage/> },
-            {path: 'activities', element: <ActivityDashboard /> },
-            {path: 'activities/:id', element: <ActivityDetailsPage/>},//(the :id is a placeholder for the url link to the specific id)
-            {path: 'createActivity', element: <ActivityForm key='create'/> },
-            {path: 'manage/:id', element:<ActivityForm/> },
+            {path: 'register', element: <RegisterForm/>},
+            {path: 'login', element: <LoginForm/>},
             {path: 'counter', element:<Counter/> },
             {path: 'errors', element: <TestErrors/>},
             {path: 'not-found', element:<NotFound/>},

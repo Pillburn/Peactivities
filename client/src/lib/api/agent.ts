@@ -14,7 +14,8 @@ export const agent = axios.create({
     timeout: 10000, //10 sec timeout in milliseconds
     headers: {
         'Content-Type': 'application/json'
-    }
+    },
+    withCredentials: true
 })
 
 agent.interceptors.request.use(config => {

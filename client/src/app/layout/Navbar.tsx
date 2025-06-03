@@ -1,13 +1,24 @@
 import { Group } from "@mui/icons-material";
-import { AppBar, Box, Button, Container, LinearProgress, MenuItem, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Container, LinearProgress, MenuItem, Toolbar, Typography } from "@mui/material";
 import { NavLink } from "react-router";
 import MenuItemLink from "../shared/components/MenuItemLink";
 import { Observer } from "mobx-react-lite";
 import { useStore } from "../../lib/hooks/useStore";
+import { useAccount } from "../../lib/hooks/useAccount";
+import UserMenu from "./UserMenu";
+import { useEffect, useState } from "react";
 
 
 export default function Navbar() {
+  const [debouncedisLoading, setDebouncedIsLoading] = useState(false);
   const {uiStore} = useStore();
+  const {currentUser} = useAccount();
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedIsLoading(uiStore.isLoading), 300);
+    return () => clearTimeout(timer);
+  }, [uiStore.isLoading]);
+
   return (
     <Box sx ={{flexGrow : 1}}>
       <AppBar position="static" sx={{
@@ -32,9 +43,6 @@ export default function Navbar() {
                     <MenuItemLink to='/about'>
                     About
                     </MenuItemLink>
-                    <MenuItemLink to='/createActivity'>
-                    Create Activity
-                    </MenuItemLink>
                     <MenuItemLink to='/counter'>
                     Counter
                     </MenuItemLink>
@@ -42,11 +50,20 @@ export default function Navbar() {
                     Test Errors
                     </MenuItemLink>
                 </Box>
-                <Button onClick={() => {}} size="large" variant="contained" color="warning">Create Activity</Button>
+                <Box display={'flex'} alignItems='center'> 
+                  {currentUser ? (
+                    <UserMenu/>
+                  ) : (
+                    <>
+                      <MenuItemLink to='/login'>Login</MenuItemLink>
+                      <MenuItemLink to='/register'>Register</MenuItemLink>
+                    </>
+                  ) }
+                </Box>
             </Toolbar>
         </Container>
           <Observer>
-            {() => uiStore.isLoading ? (
+            {() => debouncedisLoading ? (
               <LinearProgress
               color="secondary"
               sx={{position:'absolute',
