@@ -32,19 +32,19 @@ export default function Navbar() {
                     <MenuItem component={NavLink} to='/'>
                         <Group fontSize="large"/>
                         <Typography variant="h4" fontWeight='bold'>
-                            PeActivities
+                             Belfast Bus Tours
                         </Typography>
                     </MenuItem>
                 </Box>
                 <Box sx={{display:'flex'}}>
                     <MenuItemLink to='/activities'>
-                    Activities
+                    Tours
                     </MenuItemLink>
                     <MenuItemLink to='/about'>
-                    About
+                    Airport Transfers
                     </MenuItemLink>
                     <MenuItemLink to='/counter'>
-                    Counter
+                    Contact Us
                     </MenuItemLink>
                     <MenuItemLink to='/errors'>
                     Test Errors

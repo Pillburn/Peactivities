@@ -23,11 +23,11 @@ export default function HomePage() {
       >
         <Group sx={{height: 110, width: 110}}/>
         <Typography variant="h1">
-          North Coast Tours
+          Bus Tours Belfast
         </Typography>
       </Box>
       <Typography variant="h2">
-        Belfast Tour Company
+        See the City, See the Country
       </Typography>
       <Button
           component={Link}
@@ -36,9 +36,17 @@ export default function HomePage() {
           variant="contained"
           sx={{height: 80, borderRadius: 4, fontSize: '1.5rem'}}
           >
-          Bring me out to the Causeway
+          Bus Tours
       </Button>
-      
+       <Button
+          component={Link}
+          to='/transfers'
+          size="large"
+          variant="contained"
+          sx={{height: 80, borderRadius: 4, fontSize: '1.5rem'}}
+          >
+          I need an Airport Transfer
+      </Button>
     </Paper>
   )
 }

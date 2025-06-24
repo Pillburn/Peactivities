@@ -10,6 +10,7 @@ public class User: IdentityUser
     public string? Bio { get; set; }
     public string? ImageUrl { get; set; }
     
-
+    //navigation props
+    public ICollection<ActivityAttendee> Activities { get; set; } = [];
 
 }
