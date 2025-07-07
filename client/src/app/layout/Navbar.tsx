@@ -63,7 +63,7 @@ export default function Navbar() {
             </Toolbar>
         </Container>
           <Observer>
-            {() => debouncedisLoading ? (
+            {() => !debouncedisLoading ? (
               <LinearProgress
               color="secondary"
               sx={{position:'absolute',
